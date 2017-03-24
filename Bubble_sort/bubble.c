@@ -23,6 +23,7 @@ void bubble_sort(int a[],int n)
             }
         }
     }
+	timecal();
 }
 
 
@@ -49,8 +50,33 @@ void bubble_sort_better_flag(int a[],int n)
 		if(flag == 0) break;
 	
     }
+	timecal();
     
 }
+
+// the second optimization program
+
+void bubble_sort_better_flag2(int a[], int n) {  
+    int i = 0;  
+    int j = 0;  
+    int k = 0;  
+    int temp = 0;  
+    int flag = n;   
+  
+    for (i = 0; i < flag; i++) {  
+        k = flag;  
+        flag = 0;  
+        for (j = 0; j < k; j++) {  
+            if (a[j] > a[j + 1]) {  
+                flag = j;  
+                temp = a[j];  
+                a[j] = a[j + 1];  
+                a[j + 1] = temp;  
+            }  
+        }  
+    }    
+	timecal();
+}  
 
 // Algorithm running time
 
@@ -58,14 +84,13 @@ int timecal(void)
 {  
    long    i = 10000000L;  
    clock_t start, finish;  
-   double  duration; 
-   printf( "Time to do %ld empty loops is ", i );  
+   double  duration;  
    start = clock();  
    while( i-- );  
    finish = clock();  
    duration = (double)(finish - start) / CLOCKS_PER_SEC;  
    printf( "%f seconds\n", duration );  
-   system("pause");  
+//   system("pause");  
    return 0;
 }  
 
@@ -76,7 +101,7 @@ int main()
 
 	int j =0;
 
-    int a[N]={-89, 38, 11, 78, 96, 44, 19, 25,-86,50};
+    int a[N]={89, 18, -11, 78, 96, 14, 19, -25,-86,50};
 
 	printf("rawArray: ");
 
@@ -85,29 +110,22 @@ int main()
         printf("%d ",a[j]);
     }
 
-    timecal();
-
-    printf("\n\n");
+    printf("\n");
 
     bubble_sort(a,N);
 
     bubble_sort_better_flag(a,N);
 
-	printf("bubble_sort: ");
+	bubble_sort_better_flag2(a,N);
+
+	printf("bubble_sort after rawArray: ");
 
     for(i=0;i<N;i++)
     {   
         printf("%d ",a[i]);
     }
 
-    printf("\n\n");
-    printf("bubble_sort_better_flag: ");
-	for(i=0;i<N;i++)
-    {
-        printf("%d ",a[i]);
-    }
-
-    printf("\n\n");
+    printf("\n");
 
     return 0;
 }
